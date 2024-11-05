@@ -61,7 +61,6 @@ def mostrar_menu():
         elif opcao == 2:
             mostrar_produtos()
         elif opcao == 3:
-            # Atualizar produto
             nome_atual = input("Nome do produto a atualizar: ")
             novo_nome = input("Novo nome: ")
             try:
@@ -71,13 +70,12 @@ def mostrar_menu():
                 print("Erro: o preço deve ser um número.")
 
         elif opcao == 4:
-            # Excluir produto
             nome = input("Nome do produto a excluir: ")
             deletar_produto(nome)
 
         elif opcao == 0:
             print("Você optou por sair do programa.")
-            break  # Encerra o loop e sai do programa
+            break
 
         else:
             print("Opção inválida. Tente novamente.")
