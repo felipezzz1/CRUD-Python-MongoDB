@@ -2,6 +2,7 @@
 # e realizar as operações de banco de dados
 import os
 from pymongo import MongoClient
+from pymongo.results import InsertOneResult
 from pymongo.server_api import ServerApi
 from pymongo.synchronous.cursor import Cursor
 from dotenv import load_dotenv
@@ -13,13 +14,11 @@ class MongoHandler:
     load_dotenv()
     def __init__(self):
         self.uri = f"mongodb+srv://{os.getenv('API_USER')}:{os.getenv('API_KEY')}@crud.jzxod.mongodb.net/?retryWrites=true&w=majority&appName=CRUD"
-        print(self.uri)
         self.client = MongoClient(self.uri, server_api=ServerApi('1'))
         self.db = self.client["crud"]
         self.collection = self.db["produtos"]
 
-    def insert_produto(self, produto: Produto):
-
+    def insert_produto(self, produto: Produto) -> InsertOneResult:
         return self.collection.insert_one(produto.__dict__)
 
     def get_produtos(self) -> Cursor:
